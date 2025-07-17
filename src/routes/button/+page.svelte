@@ -9,7 +9,7 @@
 		audio.load();
 		audio.play();
 
-		incrementClicks();
+		incrementClicks().updates(getClicks().withOverride((clicks) => clicks + 1));
 	}
 </script>
 
