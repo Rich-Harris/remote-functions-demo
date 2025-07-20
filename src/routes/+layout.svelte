@@ -29,8 +29,9 @@
 
 	{#snippet pending()}{/snippet}
 
-	{#snippet failed(error)}
-		<p>something went horribly wrong: {(error as Error).message}</p>
+	{#snippet failed(error, reset)}
+		<p>something went horribly wrong: {(error as Error)?.message ?? error}</p>
+		<button onclick={reset}>try again</button>
 	{/snippet}
 </svelte:boundary>
 
