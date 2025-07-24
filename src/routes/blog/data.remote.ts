@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import { form, query } from '$app/server';
+import { form, prerender, query } from '$app/server';
 import { error, redirect } from '@sveltejs/kit';
 
 const posts = [
@@ -24,14 +24,14 @@ const posts = [
 	}
 ];
 
-export const getSummaries = query(async () => {
+export const getSummaries = prerender(async () => {
 	return posts.map((post) => ({
 		slug: post.slug,
 		title: post.title
 	}));
 });
 
-export const getPost = query(v.string(), async (slug) => {
+export const getPost = prerender(v.string(), async (slug) => {
 	return posts.find((post) => post.slug === slug) ?? error(404);
 });
 
